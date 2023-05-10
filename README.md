@@ -9,3 +9,7 @@
 <div align='end'>
   <i>  Imagem do diagrama </i>
 </div>
+<hr>
+<p> Aqui esta um O sistema de internações de um hospital é registrado por meio de formulários eletrônicos, que armazenam dados como datas de entrada e alta, procedimentos realizados e quartos vinculados. 
+  Os quartos têm descrições e valores diários, e cada internação é acompanhada por enfermeiros registrados no conselho de enfermagem. 
+  A internação é vinculada a um único paciente e médico responsável. </p>

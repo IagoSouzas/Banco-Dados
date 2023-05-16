@@ -40,7 +40,8 @@ Por último, crie um script SQL para a geração do banco de dados
 
 <div align='center'>
 
-![hospitalDiagrama](https://user-images.githubusercontent.com/124836944/236627804-2f123b18-dd4a-4d7d-9674-629400c3455a.svg)
+![hospital](https://github.com/IagoSouzas/Hospital-Dados/assets/124836944/72927964-3799-4697-a60f-021eaa6a233b)
+
 
 </div>
 

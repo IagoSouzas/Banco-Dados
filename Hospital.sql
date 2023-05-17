@@ -92,7 +92,9 @@ CREATE TABLE `enfermeiro` (
   `endereco` varchar(255) DEFAULT NULL,
   `telefone` varchar(30) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_enfermeiro`)
+  `id_formacao` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_enfermeiro`),
+  KEY `id_formacao` (`id_formacao`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -102,7 +104,7 @@ CREATE TABLE `enfermeiro` (
 
 LOCK TABLES `enfermeiro` WRITE;
 /*!40000 ALTER TABLE `enfermeiro` DISABLE KEYS */;
-INSERT INTO `enfermeiro` VALUES (1,'Maria da Silva','123.456.789-00','98765','F','Rua das Flores, 123','123456789','maria.silva@example.com'),(2,'João Santos','987.654.321-00','54321','M','Avenida Central, 456','987654321','joao.santos@example.com'),(3,'Ana Oliveira','456.123.789-00','24680','F','Travessa das Palmeiras, 789','456123789','ana.oliveira@example.com'),(4,'Pedro Ferreira','789.321.654-00','13579','M','Rua dos Pinheiros, 987','789321654','pedro.ferreira@example.com'),(5,'Laura Santos','987.789.321-00','24680','F','Avenida dos Eucaliptos, 654','987789321','laura.santos@example.com'),(6,'Carlos Lima','321.789.987-00','97531','M','Rua das Oliveiras, 321','321789987','carlos.lima@example.com'),(7,'Beatriz Santos','654.987.123-00','75310','F','Rua das Palmas, 987','654987123','beatriz.santos@example.com'),(8,'Andréia Oliveira','789.321.654-00','15973','F','Avenida dos Lírios, 654','789321654','andreia.oliveira@example.com'),(9,'Ricardo Almeida','987.789.321-00','75391','M','Rua das Acácias, 456','987789321','ricardo.almeida@example.com'),(10,'Juliana Costa','321.789.987-00','36974','F','Avenida dos Pinheiros, 321','321789987','juliana.costa@example.com');
+INSERT INTO `enfermeiro` VALUES (1,'Maria da Silva','123.456.789-00','98765','F','Rua das Flores, 123','123456789','maria.silva@example.com',3),(2,'João Santos','987.654.321-00','54321','M','Avenida Central, 456','987654321','joao.santos@example.com',3),(3,'Ana Oliveira','456.123.789-00','24680','F','Travessa das Palmeiras, 789','456123789','ana.oliveira@example.com',3),(4,'Pedro Ferreira','789.321.654-00','13579','M','Rua dos Pinheiros, 987','789321654','pedro.ferreira@example.com',3),(5,'Laura Santos','987.789.321-00','24680','F','Avenida dos Eucaliptos, 654','987789321','laura.santos@example.com',3),(6,'Carlos Lima','321.789.987-00','97531','M','Rua das Oliveiras, 321','321789987','carlos.lima@example.com',3),(7,'Beatriz Santos','654.987.123-00','75310','F','Rua das Palmas, 987','654987123','beatriz.santos@example.com',3),(8,'Andréia Oliveira','789.321.654-00','15973','F','Avenida dos Lírios, 654','789321654','andreia.oliveira@example.com',3),(9,'Ricardo Almeida','987.789.321-00','75391','M','Rua das Acácias, 456','987789321','ricardo.almeida@example.com',3),(10,'Juliana Costa','321.789.987-00','36974','F','Avenida dos Pinheiros, 321','321789987','juliana.costa@example.com',3);
 /*!40000 ALTER TABLE `enfermeiro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,6 +130,30 @@ LOCK TABLES `especialidade` WRITE;
 /*!40000 ALTER TABLE `especialidade` DISABLE KEYS */;
 INSERT INTO `especialidade` VALUES (1,'Pediatria'),(2,'Ortopedia'),(3,'Oftalmologia'),(4,'Gastrenterologia'),(5,'Clínica_Geral'),(6,'Pediatria'),(7,'Dermatologia'),(8,'Neurologia'),(9,'Cardiologia');
 /*!40000 ALTER TABLE `especialidade` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `formacao`
+--
+
+DROP TABLE IF EXISTS `formacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `formacao` (
+  `id_formacao` int(11) NOT NULL AUTO_INCREMENT,
+  `nome_formacao` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_formacao`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `formacao`
+--
+
+LOCK TABLES `formacao` WRITE;
+/*!40000 ALTER TABLE `formacao` DISABLE KEYS */;
+INSERT INTO `formacao` VALUES (1,'Generalista'),(2,'Especialista'),(3,'Residente');
+/*!40000 ALTER TABLE `formacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -180,6 +206,7 @@ CREATE TABLE `medicos` (
   `telefone` varchar(30) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `id_especialidade` int(11) DEFAULT NULL,
+  `id_formacao` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_medico`),
   KEY `id_especialidade` (`id_especialidade`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
@@ -191,7 +218,7 @@ CREATE TABLE `medicos` (
 
 LOCK TABLES `medicos` WRITE;
 /*!40000 ALTER TABLE `medicos` DISABLE KEYS */;
-INSERT INTO `medicos` VALUES (1,'José Oliveira','M','12345','111.222.333-44','Rua das Flores, 123, Bairro Centro, São Paulo - SP','(11) 99999-9999','jose.oliveira@cardio.com',1),(2,'Ana Souza','F','56789','222.333.444-55','Rua das Acácias, 456, Bairro Jardim, Rio de Janeiro - RJ','(21) 88888-8888','ana.souza@neuro.com',2),(3,'Carlos Ferreira','M','98765','333.444.555-66','Rua das Oliveiras, 789, Bairro Oliveira, Belo Horizonte - MG','(31) 77777-7777','carlos.ferreira@dermato.com',3),(4,'Fernanda Silva','F','24680','444.555.666-77','Rua dos Lírios, 135, Bairro Flor, Porto Alegre - RS','(51) 66666-6666','fernanda.silva@pediatra.com',5),(5,'Rafaela Costa','F','13579','555.666.777-88','Rua dos Cravos, 246, Bairro Jasmim, Florianópolis - SC','(48) 55555-5555','rafaela.costa@clinicageral.com',6),(6,'Daniel Santos','M','46810','666.777.888-99','Rua das Rosas, 579, Bairro Rosal, Campinas - SP','(19) 44444-4444','daniel.santos@gastro.com',7),(7,'Mariana Pereira','F','10111','777.888.999-00','Rua das Orquídeas, 246, Bairro Orquidário, Curitiba - PR','(41) 33333-3333','mariana.pereira@oftalmo.com',8),(8,'Luiz Costa','M','12121','888.999.000-11','Rua dos Girassóis, 789, Bairro Girassol, Belém - PA','(91) 22222-2222','luiz.costa@ortopedia.com',4),(9,'Paula Santos','F','19283','999.888.777-66','Rua das Margaridas, 246, Bairro Margarida, Salvador - BA','(71) 55555-5555','paula.santos@dermato.com',1),(10,'Maria Silva','F','12345','111.222.333-44','Rua das Flores, 123, Bairro Centro, São Paulo - SP','(11) 99999-9999','maria.silva@cardio.com',6),(11,'Pedro Santos','M','56789','222.333.444-55','Rua das Acácias, 456, Bairro Jardim, Rio de Janeiro - RJ','(21) 88888-8888','pedro.santos@neuro.com',10),(12,'Julia Costa','F','98765','333.444.555-66','Rua das Oliveiras, 789, Bairro Oliveira, Belo Horizonte - MG','(31) 77777-7777','julia.costa@dermato.com',9);
+INSERT INTO `medicos` VALUES (1,'José Oliveira','M','12345','111.222.333-44','Rua das Flores, 123, Bairro Centro, São Paulo - SP','(11) 99999-9999','jose.oliveira@cardio.com',1,1),(2,'Ana Souza','F','56789','222.333.444-55','Rua das Acácias, 456, Bairro Jardim, Rio de Janeiro - RJ','(21) 88888-8888','ana.souza@neuro.com',2,2),(3,'Carlos Ferreira','M','98765','333.444.555-66','Rua das Oliveiras, 789, Bairro Oliveira, Belo Horizonte - MG','(31) 77777-7777','carlos.ferreira@dermato.com',3,2),(4,'Fernanda Silva','F','24680','444.555.666-77','Rua dos Lírios, 135, Bairro Flor, Porto Alegre - RS','(51) 66666-6666','fernanda.silva@pediatra.com',5,1),(5,'Rafaela Costa','F','13579','555.666.777-88','Rua dos Cravos, 246, Bairro Jasmim, Florianópolis - SC','(48) 55555-5555','rafaela.costa@clinicageral.com',6,1),(6,'Daniel Santos','M','46810','666.777.888-99','Rua das Rosas, 579, Bairro Rosal, Campinas - SP','(19) 44444-4444','daniel.santos@gastro.com',7,2),(7,'Mariana Pereira','F','10111','777.888.999-00','Rua das Orquídeas, 246, Bairro Orquidário, Curitiba - PR','(41) 33333-3333','mariana.pereira@oftalmo.com',8,2),(8,'Luiz Costa','M','12121','888.999.000-11','Rua dos Girassóis, 789, Bairro Girassol, Belém - PA','(91) 22222-2222','luiz.costa@ortopedia.com',4,2),(9,'Paula Santos','F','19283','999.888.777-66','Rua das Margaridas, 246, Bairro Margarida, Salvador - BA','(71) 55555-5555','paula.santos@dermato.com',1,2),(10,'Maria Silva','F','12345','111.222.333-44','Rua das Flores, 123, Bairro Centro, São Paulo - SP','(11) 99999-9999','maria.silva@cardio.com',6,2),(11,'Pedro Santos','M','56789','222.333.444-55','Rua das Acácias, 456, Bairro Jardim, Rio de Janeiro - RJ','(21) 88888-8888','pedro.santos@neuro.com',10,2),(12,'Julia Costa','F','98765','333.444.555-66','Rua das Oliveiras, 789, Bairro Oliveira, Belo Horizonte - MG','(31) 77777-7777','julia.costa@dermato.com',9,2);
 /*!40000 ALTER TABLE `medicos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,4 +341,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-17 12:21:20
+-- Dump completed on 2023-05-17 13:54:54
